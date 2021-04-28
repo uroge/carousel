@@ -1,0 +1,99 @@
+@import "base/base";
+@import "base/animations";
+@import "base/mixins";
+@import "base/variables";
+
+@import "components/buttons";
+
+.carousel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-around;
+    height: 40rem;
+    width: 60%;
+    overflow: hidden;
+
+    &__images {
+        width: 100%;
+        height: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+        transition: transform .5s ease-in-out;
+    }
+
+    &__image {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        transition: transform .5s ease-in-out;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__arrow-right, &__arrow-left {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -2.2rem;
+        padding: 16px;
+        color: $color-white;
+        font-weight: bold;
+        font-size: 1.8rem;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    &__arrow-right:hover, &__arrow-left:hover {
+        background-color: rgba($color-black, 0.8);
+      }
+
+    &__arrow-right {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    &__arrow-left {
+        left: 0;
+    }
+
+    &__indicators {
+        width: 20%;
+        position: absolute;
+        top: 90%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__dot {
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: slategray;
+        border-radius: 50%;
+        background-color: rgba($color-black, 0.8);
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba($color-black, 0.5);
+        }
+    }
+
+    .active {
+        background-color: rgba(255, 255, 255, .3);
+        &:hover {
+            background-color: rgba(255, 255, 255, .5);
+        }
+    }
+}
