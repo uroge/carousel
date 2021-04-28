@@ -20,20 +20,35 @@
         const target = e.target;
         if(carouselIndicators) {
             if(target.classList.contains('js-carousel__dot')) {
-                carouselIndicators.forEach(indicator => {
-                    indicator.classList.remove('active');
-                });
 
                 if(target.getAttribute('data-id')){
-                    carouselIndicators[target.getAttribute('data-id')].classList.add('active');
                     slideIndex = parseInt(target.getAttribute('data-id'));
                     resetSlideInterval();
                 }
         
-                imagesContainer.style.transform = `translateX(${target.getAttribute('data-id') * -carouselWidth}px)`;
+                slideToIndex(slideIndex);
             }
         }
     });
+
+
+    /*
+        Slides carousel to specific index
+        @param index - index to which carousel should slide
+    */
+    const slideToIndex = (index) => {
+        if(carouselIndicators) {
+            carouselIndicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+    
+            if(carouselIndicators[index]) {
+                carouselIndicators[index].classList.add('active');
+            }
+    
+            imagesContainer.style.transform = `translateX(${index * -carouselWidth}px)`;
+        }
+    }
 
     /* 
         Moves carousel to the left and shows next picture
@@ -47,15 +62,7 @@
                 slideIndex > numberOfImages ? slideIndex = 0 : slideIndex;
             }
     
-            carouselIndicators.forEach(indicator => {
-                indicator.classList.remove('active');
-            });
-
-            if(carouselIndicators[slideIndex]) {
-                carouselIndicators[slideIndex].classList.add('active');
-            }
-    
-            imagesContainer.style.transform = `translateX(${slideIndex * -carouselWidth}px)`;
+            slideToIndex(slideIndex);
         }
     }
 
@@ -83,15 +90,7 @@
                 slideIndex < 0 ? slideIndex = numberOfImages : slideIndex;
             }
     
-            carouselIndicators.forEach(indicator => {
-                indicator.classList.remove('active');
-            });
-
-            if(carouselIndicators[slideIndex]) {
-                carouselIndicators[slideIndex].classList.add('active');
-            }
-    
-            imagesContainer.style.transform = `translateX(${slideIndex * -carouselWidth}px)`;
+            slideToIndex(slideIndex);
         }
     }
 
