@@ -29,7 +29,6 @@
                     slideIndex = parseInt(target.getAttribute('data-id'));
                     resetSlideInterval();
                 }
-                
         
                 imagesContainer.style.transform = `translateX(${target.getAttribute('data-id') * -carouselWidth}px)`;
             }
@@ -44,7 +43,6 @@
             resetSlideInterval();
             slideIndex = slideIndex + 1;
 
-            
             if(numberOfImages) {
                 slideIndex > numberOfImages ? slideIndex = 0 : slideIndex;
             }
@@ -52,7 +50,10 @@
             carouselIndicators.forEach(indicator => {
                 indicator.classList.remove('active');
             });
-            carouselIndicators[slideIndex].classList.add('active');
+
+            if(carouselIndicators[slideIndex]) {
+                carouselIndicators[slideIndex].classList.add('active');
+            }
     
             imagesContainer.style.transform = `translateX(${slideIndex * -carouselWidth}px)`;
         }
@@ -85,7 +86,10 @@
             carouselIndicators.forEach(indicator => {
                 indicator.classList.remove('active');
             });
-            carouselIndicators[slideIndex].classList.add('active');
+
+            if(carouselIndicators[slideIndex]) {
+                carouselIndicators[slideIndex].classList.add('active');
+            }
     
             imagesContainer.style.transform = `translateX(${slideIndex * -carouselWidth}px)`;
         }
